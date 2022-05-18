@@ -1,5 +1,4 @@
 import itertools
-import itertools
 
 n = int(input())
 
