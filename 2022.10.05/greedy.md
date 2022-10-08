@@ -140,3 +140,35 @@ print(answer%(2 ** 64))
 
 
 이분탐색으로 푼사람도 있는거같은데 이걸 왜 어떻게 이분탐색으로 푼건지 아직 이해가 안된다 좋은접근법도 아닌거같다.
+
+
+1931번
+
+~~~
+import sys 
+
+n = int(sys.stdin.readline().rstrip())
+
+meetingList = []
+
+for _ in range(n):
+    meetingList.append(list(map(int,sys.stdin.readline().rstrip().split())))
+
+meetingList.sort(key= lambda x : (x[1], x[0]))
+
+answer = 1
+
+start = meetingList[0]
+
+del(meetingList[0])
+
+for i in meetingList:
+    if start[1] <= i[0]:
+        answer += 1
+        start = i
+        
+
+print(answer)
+
+~~~
+정렬기준 하나 아닐수있다 정렬할때 기준이 겹치나 보고 그에따른 두번째 기준을 정해주던지 뭔가 해야한다.
