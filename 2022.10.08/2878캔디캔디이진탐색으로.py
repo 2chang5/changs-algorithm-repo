@@ -27,8 +27,6 @@ while left <= right:
     else :
         right = mid -1
 
-print(temp)
-
 gavedcandy = 0
 
 for j in greedyFriends:
