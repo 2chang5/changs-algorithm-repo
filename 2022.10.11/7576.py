@@ -13,7 +13,7 @@ startTomato = []
 
 direction = [(-1,0),(0,-1),(0,1),(1,0)]
 
-theDayBeforeTomato = tomatoBox[:]
+theDayBeforeTomato = [tomatoBox[o][:] for o in range(h)]
 
 #일단 토마토 다익었나 확인 + startTomao 확인
 for i in range(w):
@@ -54,10 +54,10 @@ while needVisited :
     needVisited.append(tomatoCheckPoint)
         
     # 전날과 같은지 체크 
-    # if theDayBeforeTomato == tomatoBox:
-    #     print(-1)
-    #     exit()
-    # theDayBeforeTomato = tomatoBox[:]
+    if theDayBeforeTomato == tomatoBox:
+        print(-1)
+        exit()
+    theDayBeforeTomato = [tomatoBox[o][:] for o in range(h)]
     #다 1됐는지 체크
     for l in range(w):
         for m in range(h):
