@@ -3,7 +3,7 @@ from collections import deque
 
 w,h = map(int,sys.stdin.readline().rstrip().split())
 
-tomatoBox = [map(int,sys.stdin.readline().rstrip().split()) for _ in range(h)]
+tomatoBox = [list(map(int,sys.stdin.readline().rstrip().split())) for _ in range(h)]
 
 startCheckAllTomatoIsReady = True
 
@@ -30,26 +30,34 @@ if startCheckAllTomatoIsReady :
 #토마토 탐색 bfs
 needVisited = deque()
 
-needVisited.extend(startTomato)
+needVisited.append(startTomato)
 
 while needVisited :
-    y,x = needVisited.popleft()
 
+    dayList = needVisited.popleft()
+    
      #count day 늘리기
     dayCount += 1
 
-    allTomatoIsReady = True
-    for k in range(4):
-        ty,tx = y+direction[i][0],x+direction[i][1]
-        if ty in range(h) and tx in range(w) and tomatoBox[ty][tx] != -1 and tomatoBox[ty][tx] == 0:
-            tomatoBox[ty][tx] = 1
-            needVisited.append((ty,tx))
+    tomatoCheckPoint = []
+
+    for n in dayList:
+        y,x = n
+
+        allTomatoIsReady = True
+        for k in range(4):
+            ty,tx = y+direction[k][0],x+direction[k][1]
+            if ty in range(h) and tx in range(w) and tomatoBox[ty][tx] == 0:
+                tomatoBox[ty][tx] = 1
+                tomatoCheckPoint.append((ty,tx))
         
-    #전날과 같은지 체크 
-    if theDayBeforeTomato == tomatoBox:
-        print(-1)
-        exit()
-    theDayBeforeTomato = tomatoBox[:]
+    needVisited.append(tomatoCheckPoint)
+        
+    # 전날과 같은지 체크 
+    # if theDayBeforeTomato == tomatoBox:
+    #     print(-1)
+    #     exit()
+    # theDayBeforeTomato = tomatoBox[:]
     #다 1됐는지 체크
     for l in range(w):
         for m in range(h):
