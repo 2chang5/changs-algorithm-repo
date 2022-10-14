@@ -42,7 +42,6 @@ while needVisited :
     for n in dayList:
         y,x = n
 
-        allTomatoIsReady = True
         for k in range(4):
             ty,tx = y+direction[k][0],x+direction[k][1]
             if ty in range(h) and tx in range(w) and tomatoBox[ty][tx] == 0:
@@ -59,4 +58,7 @@ for l in range(w):
 
 print(dayCount-1)
    
-    
+# 문제에서 얻은 팁
+# 중간에 검사안해도된다 -> 그냥 bfs는 한번 쭉 검사하고나면 모든데 다돌으니까 중간검사하면 오히려 시간복잡도 올라감 이런거 한번생각해보자
+# 그리고 값넣어줄때 한번에 리스트로 묶어서 append할수있다 일수에 따라서 전염되는 모습이면 일수에 따라 묶어주고 하루하루 진행되는 느낌으로 for문 돌려주면된다.
+# 그리고 조건값 잘 생각해보고 범위는 if문 안에서 체크하면되고 xy 반대로 쓰는거 랬갈리지 말자
